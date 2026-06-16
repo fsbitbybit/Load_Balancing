@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  loadbalancer:
+    build: .
+    ports:
+      - "8080:8080"
+    command: ["--service=loadbalancer"]
+    depends_on:
+      - backend1
+      - backend2
+      - backend3
+    networks:
+      - app-network
+
+  backend1:
+    build: .
+    command: ["--service=backend1"]
+    networks:
+      - app-network
+
+  backend2:
+    build: .
+    command: ["--service=backend2"]
+    networks:
+      - app-network
+
+  backend3:
+    build: .
+    command: ["--service=backend3"]
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

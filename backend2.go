@@ -11,5 +11,6 @@ func startBackend2() {
 		w.Write([]byte("Backend server 2"))
 	})
 
-	log.Fatal(http.ListenAndServe(":8002", mux))
+	log.Println("Starting Backend 2 on 0.0.0.0:8002")
+	log.Fatal(http.ListenAndServe("0.0.0.0:8002", mux))
 }
